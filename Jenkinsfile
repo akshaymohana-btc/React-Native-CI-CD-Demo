@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('Git Checkout') {
+    stage('Install npm dependencies') {
       steps {
-        git url: 'https://github.com/akshaymohana-btc/React-Native-CI-CD-Demo.git'
+        sh 'npm install'
       }
     }
   }
