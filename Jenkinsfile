@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git url: 'https://github.com/akshaymohana-btc/React-Native-CI-CD.git'
+                git url: 'git@github.com:akshaymohana-btc/React-Native-CI-CD.git'
             }
         }
         stage('SonarQube Scan') {
