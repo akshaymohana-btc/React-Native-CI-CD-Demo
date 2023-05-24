@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('Welcome') {
+    stage('Git Checkout') {
       steps {
-        echo 'Welcome to CI/CD'
+        git url: 'https://github.com/akshaymohana-btc/React-Native-CI-CD-Demo.git'
       }
     }
   }
