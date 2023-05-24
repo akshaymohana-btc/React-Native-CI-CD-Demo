@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Git Checkout') {
-            steps {
+//         stage('Git Checkout') {
+//             steps {
 
-            }
-        }
+//             }
+//         }
         stage('SonarQube Scan') {
             steps {
                 withSonarQubeEnv('Jenkins SonarQube Scanner') {
