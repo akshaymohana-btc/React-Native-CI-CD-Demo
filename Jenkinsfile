@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     stages {
-//         stage('Git Checkout') {
-//             steps {
-
-//             }
-//         }
+        stage('Git Checkout') {
+            steps {
+                git url: 'https://github.com/akshaymohana-btc/React-Native-CI-CD.git'
+            }
+        }
         stage('SonarQube Scan') {
             steps {
                 withSonarQubeEnv('Jenkins SonarQube Scanner') {
