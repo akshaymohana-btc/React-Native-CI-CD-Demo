@@ -9,15 +9,16 @@ pipeline {
         }
         stage('SonarQube Scan') {
             steps {
-                def scannerHome = tool 'Jenkins SonarQube Scanner';
-                withSonarQubeEnv() {
+                withSonarQubeEnv('Jenkins SonarQube Scanner') {
                     bat "${scannerHome}/bin/sonar-scanner"
                 }
             }
         }
         stage('SonarQube Quality Gate') {
-            timeout(time: 2, unit: 'MINUTES') {
-                waitForQualityGate abortPipeline: true
+            steps {
+                timeout(time: 2, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
             }
         }
     }
