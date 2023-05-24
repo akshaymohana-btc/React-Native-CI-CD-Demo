@@ -7,9 +7,6 @@ pipeline {
 
             }
         }
-    }
-
-    stages {
         stage('SonarQube Scan') {
             steps {
                 def scannerHome = tool 'Jenkins SonarQube Scanner';
