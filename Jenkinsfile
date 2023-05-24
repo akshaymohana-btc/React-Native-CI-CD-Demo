@@ -4,7 +4,7 @@ pipeline {
     stage('Git Checkout') {
       steps {
         echo 'Cloning github repository'
-        git 'https://github.com/akshaymohana-btc/React-Native-CI-CD-Demo'
+        git branch: 'develop', url: 'https://github.com/akshaymohana-btc/React-Native-CI-CD-Demo'
       }
     }
     stage('Install npm dependencies') {
