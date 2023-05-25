@@ -10,11 +10,19 @@ pipeline {
         git branch: 'develop', url: 'https://github.com/akshaymohana-btc/React-Native-CI-CD-Demo'
       }
     }
-    stage('Install npm dependencies') {
+    stage('Sonarqube Scanning'){
       steps {
-        echo 'Installing dependencies...'
-        bat 'npm install'
+        def scannerHome = tool 'Jenkins SonarQube Scanner';
+        withSonarQubeEnv() {
+          bat "${scannerHome}/bin/sonar-scanner"
+        }
       }
     }
+//     stage('Install npm dependencies') {
+//       steps {
+//         echo 'Installing dependencies...'
+//         bat 'npm install'
+//       }
+//     }
   }
 }
