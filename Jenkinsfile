@@ -12,8 +12,11 @@ pipeline {
     }
     stage('Sonarqube Scanning'){
       steps {
-        def scannerHome = tool 'Jenkins SonarQube Scanner';
-        withSonarQubeEnv() {
+        script {
+          // requires SonarQube Scanner 2.8+
+          scannerHome = tool 'Jenkins SonarQube Scanner'
+        }
+        withSonarQubeEnv(installationName: 'Jenkins SonarQube Scanner') {
           bat "${scannerHome}/bin/sonar-scanner"
         }
       }
