@@ -15,18 +15,18 @@ jobs:
         fetch-depth: 0
     
     # Triggering SonarQube analysis
-    name: Sonarqube scan
-    - uses: sonarsource/sonarqube-scan-action@master
+    - name: Sonarqube scan
+      uses: sonarsource/sonarqube-scan-action@master
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         
     # Check the Quality Gate status.
-    name: SonarQube Quality Gate check
-    id: sonarqube-quality-gate-check
-    - uses: sonarsource/sonarqube-quality-gate-action@master
+    - name: SonarQube Quality Gate check
+      id: sonarqube-quality-gate-check
+      uses: sonarsource/sonarqube-quality-gate-action@master
     # Forcing to fail step after specific time.
-    timeout-minutes: 5
+      timeout-minutes: 5
       env:
        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} #OPTIONAL
