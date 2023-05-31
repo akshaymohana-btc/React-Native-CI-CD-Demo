@@ -1,8 +1,9 @@
 name: Sonarqube code analysis
 
 on:
-  branches:
-    - develop
+  push:
+    branches:
+      - develop
   pull_request:
     types: [opened]
   
