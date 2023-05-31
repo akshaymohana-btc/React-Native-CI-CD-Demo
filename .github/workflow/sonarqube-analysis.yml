@@ -1,0 +1,32 @@
+name: Sonarqube code analysis
+
+on:
+  branches:
+    - develop
+  pull_request:
+    types: [opened]
+  
+jobs:
+  sonarqube:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    
+    # Triggering SonarQube analysis
+    name: Sonarqube scan
+    - uses: sonarsource/sonarqube-scan-action@master
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        
+    # Check the Quality Gate status.
+    name: SonarQube Quality Gate check
+    id: sonarqube-quality-gate-check
+    - uses: sonarsource/sonarqube-quality-gate-action@master
+    # Forcing to fail step after specific time.
+    timeout-minutes: 5
+      env:
+       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+       SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} #OPTIONAL
