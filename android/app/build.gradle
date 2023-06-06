@@ -93,9 +93,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.gitlabcicd"
+    namespace "com.githubcicd"
     defaultConfig {
-        applicationId "com.gitlabcicd"
+        applicationId "com.githubcicd"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
