@@ -37,8 +37,7 @@ jobs:
       run: cd android && chmod +x ./gradlew
       
     - name: Build Android App Bundle
-      run: |
-        cd android && ./gradlew clean && ./gradlew bundleRelease --no-daemon --stacktrace
+      run: cd android && ./gradlew clean && ./gradlew bundleRelease --no-daemon --stacktrace
       
     - name: Sign App Bundle
       id: sign_app
