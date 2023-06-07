@@ -1,4 +1,4 @@
-package com.gitlabcicd;
+package com.githubcicd;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
