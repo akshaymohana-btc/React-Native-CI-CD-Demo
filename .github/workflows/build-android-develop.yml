@@ -43,6 +43,7 @@ jobs:
       
     - name: Build Android App Bundle
       run: |
+          ls
           cd android && ./gradlew assembleRelease --no-daemon
     
     - name: Sign App Bundle
