@@ -17,7 +17,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 18
-        run: npm install
+    - run: npm i
           
     - name: Cache Gradle Wrapper
       uses: actions/cache@v2
@@ -38,29 +38,24 @@ jobs:
       
     - name: Build Android App Bundle
       run: |
-        cd android && ./gradlew bundleRelease --no-daemon
-      
+          cd android && ./gradlew assembleRelease --no-daemon
+    
     - name: Sign App Bundle
       id: sign_app
       uses: r0adkll/sign-android-release@v1
       with:
-        releaseDirectory: android/app/build/outputs/bundle/release
+        releaseDirectory: android/app/build/outputs/apk/release
         signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
         alias: ${{ secrets.ANDROID_SIGNING_ALIAS }}
         keyStorePassword: ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}
         keyPassword: ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}
-        
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: Signed App Bundle
-        path: ${{steps.sign_app.outputs.signedReleaseFile}}
         
     - name: Distribute app via Firebase App Distribution
       uses: wzieba/Firebase-Distribution-Github-Action@v1
       with:
         appId: ${{secrets.FIREBASE_APP_ID}}
         serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+        groups: internal-btc
         file: ${{steps.sign_app.outputs.signedReleaseFile}}
         
 
